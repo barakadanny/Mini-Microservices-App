@@ -40,6 +40,41 @@ The application is split into independent services that communicate asynchronous
 
 ---
 
+## API Endpoints
+
+### Posts Service — `http://localhost:4000`
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/posts` | Return all posts |
+| `POST` | `/posts` | Create a new post |
+| `POST` | `/events` | Receive events from the event bus |
+
+### Comments Service — `http://localhost:4001`
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/posts/:id/comments` | Return all comments for a post |
+| `POST` | `/posts/:id/comments` | Create a comment on a post |
+| `POST` | `/events` | Receive events from the event bus |
+
+### Query Service — `http://localhost:4002`
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/posts` | Return aggregated posts with their comments |
+| `POST` | `/events` | Receive events from the event bus |
+
+### Moderation Service — `http://localhost:4003`
+| Method | Path | Description |
+|---|---|---|
+| `POST` | `/events` | Receive events from the event bus |
+
+### Event Bus — `http://localhost:4005`
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/events` | Return all stored events (used for replay on service startup) |
+| `POST` | `/events` | Accept an event and fan it out to all services |
+
+---
+
 ## Key Concepts Practiced
 
 - **Microservices decomposition** — each service owns its own data and logic
